@@ -23,7 +23,8 @@ namespace {
           MDNode* N = MDNode::get(C, MDString::get(C, std::to_string(instructions)));
           (*I).setMetadata("stats.instNumber", N);
         }
-        MDNode* N = MDNode::get(C, ConstantAsMetadata::get(ConstantInt::get(C, llvm::APInt(64, instructions, false))));
+        MDNode* temp_N = MDNode::get(C, ConstantAsMetadata::get(ConstantInt::get(C, llvm::APInt(64, instructions, false))));
+        MDNode* N = MDNode::get(C, temp_N);
         F.setMetadata("stats.totalInsts", N);
       }
       return true;
